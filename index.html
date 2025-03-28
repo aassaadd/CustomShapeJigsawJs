@@ -1112,210 +1112,119 @@
 <body onload="$('seed').value = random() * 10000; updateseed(); changepiecetabmode()">
 
     <div class="tab">
-        <button class="tablinks" id="default" onclick="switchtab(event, 'rect')">Rectangular border</button>
-        <button class="tablinks" onclick="switchtab(event, 'custom')">Custom border</button>
-        <button class="tablinks" onclick="switchtab(event, 'help')">Help</button>
-
+        <button class="tablinks" id="default" onclick="switchtab(event, 'rect')">矩形边框</button>
+        <button class="tablinks" onclick="switchtab(event, 'custom')">自定义边框</button>
+        <button class="tablinks" onclick="switchtab(event, 'help')">帮助</button>
     </div>
+
     <div class="tabcontent">
         <table class="controltable">
             <tr class="custom">
-                <td>SVG border file:</td>
+                <td>SVG 边框文件:</td>
                 <td><input type="file" id="borderfile" accept=".svg" onchange="loadborder()"></td>
-                <td><input id="abv" type="checkbox" checked />Use viewbox</td>
+                <td><input id="abv" type="checkbox" checked />使用视图框</td>
             </tr>
             <tr class="custom">
-                <td>Custom border scale factor:</td>
+                <td>自定义边框缩放因子:</td>
                 <td><input id="cbsf" onchange="updatedimensions(0)" type="text" value="1" size="5" /></td>
             </tr>
             <tr class="rect">
-                <td>Columns:</td>
-                <td><input id="ncols" onchange="updatedimensions(0)" type="text" value="100" size="5" /> cells</td>
+                <td>列数:</td>
+                <td><input id="ncols" onchange="updatedimensions(0)" type="text" value="100" size="5" /> 单元格</td>
             </tr>
             <tr class="rect">
-                <td>Rows:</td>
-                <td><input id="nrows" onchange="updatedimensions(0)" type="text" value="100" size="5" /> cells</td>
+                <td>行数:</td>
+                <td><input id="nrows" onchange="updatedimensions(0)" type="text" value="100" size="5" /> 单元格</td>
             </tr>
             <tr>
-                <td>Seed:</td>
+                <td>种子值:</td>
                 <td><input id="_seed" type="text" value="0" onchange="update_seed()" /></td>
                 <td><input id="seed" type="range" value="0" min="0" max="9999" step="1" onchange="updateseed()" /></td>
             </tr>
             <tr>
-                <td>Use non-deterministic randomness:</td>
-                <td><input id="ndr" type="checkbox" />(seed is ignored if ticked)</td>
+                <td>使用非确定性随机数:</td>
+                <td><input id="ndr" type="checkbox" />(如果勾选，则忽略种子值)</td>
             </tr>
             <tr>
-                <td>Grid size:</td>
-                <td><input id="gsize" type="text" value="10" size="5" /> cells</td>
+                <td>网格大小:</td>
+                <td><input id="gsize" type="text" value="10" size="5" /> 单元格</td>
             </tr>
-
             <tr>
-                <td>Tab jitter (%):</td>
+                <td>标签抖动 (%):</td>
                 <td><input id="tabjitter" type="text" value="5" size="5" /></td>
             </tr>
             <tr>
-                <td>Initial Grid position noise (0 to 1):</td>
+                <td>初始网格位置噪声 (0 到 1):</td>
                 <td><input id="gnoise" type="text" value="0.5" size="5" /></td>
             </tr>
             <tr>
-                <td>Minmum edge length to draw tab (mm):</td>
+                <td>最小边缘长度以绘制标签 (mm):</td>
                 <td><input id="minedge" type="text" value="10" size="5" /></td>
             </tr>
             <tr>
-                <td>Tab size mode (mm):</td>
+                <td>标签尺寸模式 (mm):</td>
                 <td>
                     <select id="tabsizemode" name="tabsizemode" onchange="changepiecetabmode()">
-                        <option value="rel" selected="selected">Relative (%)</option>
-                        <option value="abs">Absolute (mm)</option>
-                        <option value="rabs">Restricted relative</option>
+                        <option value="rel" selected="selected">相对 (%)</option>
+                        <option value="abs">绝对 (mm)</option>
+                        <option value="rabs">受限相对</option>
                     </select>
                 </td>
             </tr>
             <tr class="rtab">
-                <td>Relative Tab size (%):</td>
+                <td>相对标签尺寸 (%):</td>
                 <td><input id="tabrelsize" type="text" value="18" size="5" /></td>
             </tr>
             <tr class="atab">
-                <td>Absolute Tab size (mm):</td>
+                <td>绝对标签尺寸 (mm):</td>
                 <td><input id="abstab" type="text" value="2" size="5" /></td>
             </tr>
             <tr class="rabstab">
-                <td>Minimum tab size (mm):</td>
+                <td>最小标签尺寸 (mm):</td>
                 <td><input id="mintab" type="text" value="1.5" size="5" /></td>
             </tr>
             <tr class="rabstab">
-                <td>Maximum tab size (mm):</td>
+                <td>最大标签尺寸 (mm):</td>
                 <td><input id="maxtab" type="text" value="3" size="5" /></td>
             </tr>
             <tr>
                 <td> &nbsp;</td>
             </tr>
             <tr>
-                <td>Show traced vectors over preview</td>
+                <td>显示追踪向量在预览上</td>
                 <td><input id="stv" type="checkbox" /></td>
             </tr>
             <tr>
-                <td>Actual cell size:</td>
+                <td>实际单元格大小:</td>
                 <td><input id="cell_scale" onchange="updatedimensions(0)" type="text" value="2" size="5" /> mm</td>
             </tr>
             <tr>
-                <td>Cell preview scale:</td>
-                <td><input id="pixelscell" type="text" value="2" size="5" /> pixels/cell</td>
-            </tr>
-            <!-- <tr class="custom">
-                <td><button onclick="loadborder()">Load custom border</button></td>
-                <td><button onclick="unloadborder()">Unload custom border</button></td>
-            </tr> -->
-            <tr>
-                <td><button onclick="generate()">Generate Jigsaw</button></td>
+                <td>单元格预览比例:</td>
+                <td><input id="pixelscell" type="text" value="2" size="5" /> 像素/单元格</td>
             </tr>
             <tr>
-                <td><button onclick="savesvg()">Download SVG (non-overlapping vectors)</button></td>
+                <td><button onclick="generate()">生成拼图</button></td>
             </tr>
             <tr>
-                <td>This jigsaw has: <label id="piececount">0</label> pieces</td>
+                <td><button onclick="savesvg()">下载 SVG (非重叠向量)</button></td>
             </tr>
             <tr>
-                <td>Jigsaw dimensions: <label id="dimensions">200 x 200</label> mm</td>
+                <td>此拼图包含: <label id="piececount">0</label> 块</td>
             </tr>
-
+            <tr>
+                <td>拼图尺寸: <label id="dimensions">200 x 200</label> mm</td>
+            </tr>
         </table>
         <div class="help">
-            <h2>How it works</h2>
-            <h3>Basic Initial setup</h3>
-            <p>This jigsaw generator generates the piece shapes through Voronoi tesselation. As-is it's a quick hack
-                reusing many of the functionality
-                from my other generator <a href="https://proceduraljigsaw.github.io/OrganicPuzzleJs/">here</a>
-                borrowing the normal jigsaw puzzle tab generation form <a
-                    href="https://draradech.github.io/jigsaw/index.html">this generator</a> by draradech.
-                You're on your own for now, I'll write some documentation eventually on how eveyrthing is supposed to
-                work.
-            </p>
+            <h2>工作原理</h2>
+            <h3>基本初始设置</h3>
+            <p>此拼图生成器通过 Voronoi 镶嵌生成拼图形状。目前它是一个快速实现的工具，复用了许多来自我的其他生成器的功能<a href="https://proceduraljigsaw.github.io/OrganicPuzzleJs/">这里</a>，并借用了正常的拼图标签生成功能来自<a href="https://draradech.github.io/jigsaw/index.html">此生成器</a> by draradech。</p>
 
-            <h3>Custom border mode usage</h3>
-            <p>
-                In this mode, the generator will use a custom border for the jigsaw, given by a border SVG file. When
-                you
-                set this mode, it will prompt you
-                to select a custom SVG border file. The SVG border file must be an SVG file defining the intended border
-                you
-                want to use. It must contain at least one area enclosed by
-                strokes, and it may have holes inside. The SVG border file will be preprocessed before generating the
-                jigsaw. First, your SVG file will be flattened. That means that all the SVG transforms
-                will be applied and burned in, and all the stroke and fill settings will be removed. Every element
-                (basic
-                shapes, paths) will be stripped of fill and stroke style attributes and set to no fill and a basic black
-                stroke. The contents of the files will be moved to the upper left corner and the extent of the drawing
-                will
-                be set to exactly contain all the elements.
-            </p>
-            <p>
-                Also, your SVG file will be stripped of dimension units information (set to unitless)
-                and interpreted as if its dimensions were millimeters. Finally, it will be scaled up or down by the
-                <strong>Custom border scale factor</strong>.
-            </p>
-            <h2>FAQ</h2>
-            <p><strong>Where are my border files uploaded?</strong></p>
-            <p>Nowhere. It all stays on your computer, the border file is just loaded into your browser and used
-                exclusively within the browser. You're basically
-                downloading a self-contained webapp and executing it locally, in fact you can download this for totally
-                offline use, see below.
-            </p>
-            <p><strong>Is this free?</strong></p>
-            <p>Yes, it is. The code falls under the <a
-                    href="https://raw.githubusercontent.com/proceduraljigsaw/CustomShapeJigsawJs/main/LICENSE">MIT
-                    license</a></p>
-            <p><strong>Where can I get the code?</strong></p>
-            <p><a href="https://github.com/proceduraljigsaw/CustomShapeJigsawJs">Here</a></p>
-            <p><strong>Can I use it offline somehow?</strong></p>
-            <p>Sure, this is all executed in your browser. Just clone the github repo or right-click save the web from
-                your browser. It will download all the required assets,
-                and you may run it by just opening index.html using your favorite browser.
-            </p>
-            <p><strong>Which browsers are supported?</strong></p>
-            <p>As far as I know, any modern browser should work. It's been tested on the most up to date versions
-                (August
-                2024) of Firefox, Chrome, Edge, and Safari.
-            </p>
-            <p><strong>Is this all your job?</strong></p>
-            <p>No, I use two third-party libraries.</p>
-            <ul>
-                <li>
-                    A heavily modified and stripped down version of <a
-                        href="https://github.com/jankovicsandras/imagetracerjs">imagetracerjs</a> 1.2.6 for
-                    vectorization (for this generator it's actually not used per se, but kept there to avoid having to
-                    change the structure too much)
-                </li>
-                <li>
-                    <a href="https://gist.github.com/timo22345/9413158">Flatten.js</a> for SVG transform flattening.
-                </li>
-                <li>
-                    <a href="https://draradech.github.io/jigsaw/index.html">Draradech's jigsaw generator</a> where I
-                    borrowed the tab generating function from..
-                </li>
-
-            </ul>
-            <p><strong>Any known issues?</strong></p>
-            <p>
-                Many. This should be considered beta software, use with caution. I recommend cutting in cheap material
-                before committing for a design, to see any
-                potential issues before wasting expensive material. I'm not responsible for any material waste
-            </p>
-
-            <p><strong>Do you have any other jigsaw generators for different jigsaw styles?</strong></p>
-            <p>Sure, <a href="https://github.com/proceduraljigsaw">go suit yourself</a> </p>
-            <p><strong>I meant normal puzzles, with rectangular pieces with tabs</strong></p>
-            <p>This one can do it if you set Initial Grid position noise to 0, but if you don't want custom border, then draradech has a better one<a href="https://draradech.github.io/jigsaw/index.html">has a very
-                    good one</a>, and it's also free. </p>
-            <p><strong>How can I contact you?</strong></p>
-            <p>Use whatever tools github provides <a
-                    href="https://github.com/proceduraljigsaw/CustomShapeJigsawJs">here</a>
-                to report bugs or whatever you find.
-            </p>
+            <h3>自定义边框模式用法</h3>
+            <p>在此模式下，生成器将使用一个由边框 SVG 文件定义的自定义边框。当您设置此模式时，它会提示您选择一个自定义 SVG 边框文件。该 SVG 边框文件必须是一个定义所需边框的 SVG 文件。它必须至少包含一个由线条包围的区域，并且可以有内部孔洞。在生成拼图之前，SVG 边框文件将被预处理。首先，您的 SVG 文件将被展平。这意味着所有 SVG 变换都将被应用并固定，所有描边和填充设置将被移除。每个元素（基本形状、路径）将被剥离填充和描边样式属性，并设置为无填充和基本黑色描边。文件内容将移动到左上角，绘图范围将被设置为正好包含所有元素。</p>
+            <p>此外，您的 SVG 文件将被剥离尺寸单位信息（设置为无单位），并解释为以毫米为单位。最后，它将根据<strong>自定义边框缩放因子</strong>进行放大或缩小。</p>
         </div>
     </div>
-
 
     <script>
         document.getElementById("default").click();
@@ -1323,7 +1232,6 @@
     <svg id="svgcontainer"></svg>
     <canvas id="automata"></canvas>
     <div id="layercnt"></div>
-
 </body>
 
 </html>
